@@ -1,315 +1,175 @@
-Task Management System
-A full-stack task management application built with Laravel backend and React frontend, featuring JWT authentication, CRUD operations, and role-based access control.
+# Task Management System – Laravel + React
 
-🚀 Features
-Backend (Laravel API)
-JWT Authentication (Register/Login/Logout)
+A **Task Management System** built with **Laravel 10+** (backend) and **React + Vite** (frontend).
+Features **JWT authentication**, **RBAC (admin/user)**, **task filtering**, and frontend deployed on **Vercel**.
 
-RESTful API endpoints for tasks
+---
 
-Role-based Access Control (Admin/User)
+## Project Structure
 
-Task filtering and sorting
-
-Form validation using Laravel Requests
-
-Eloquent ORM with relationships
-
-Unit tests for authentication and tasks
-
-Frontend (React)
-Modern React with Vite
-
-React Router for navigation
-
-Context API for state management
-
-Axios for API calls
-
-Protected routes
-
-Responsive design
-
-Real-time task management
-
-🛠️ Tech Stack
-Backend:
-
-Laravel 10+
-
-PHP 8.1+
-
-MySQL
-
-JWT Authentication
-
-PHPUnit for testing
-
-Frontend:
-
-React 18
-
-Vite
-
-React Router DOM
-
-Axios
-
-Tailwind CSS
-
-📋 Prerequisites
-Before you begin, ensure you have the following installed:
-
-PHP 8.1 or higher
-
-Composer
-
-Node.js 16 or higher
-
-MySQL 5.7 or higher
-
-Git
-
-🚀 Quick Start
-1. Clone the Repository
-bash
-git clone <your-repository-url>
-cd task-management-system
-2. Backend Setup
-Navigate to backend directory:
-bash
-cd backend
-Install PHP dependencies:
-bash
-composer install
-Environment Configuration:
-Copy the environment file and configure your database:
-
-bash
-cp .env.example .env
-Edit .env file with your database credentials:
-
-env
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=task_management
-DB_USERNAME=your_username
-DB_PASSWORD=your_password
-Generate application key:
-bash
-php artisan key:generate
-Generate JWT secret:
-bash
-php artisan jwt:secret
-Run migrations:
-bash
-php artisan migrate
-(Optional) Seed with sample data:
-bash
-php artisan db:seed
-Start the development server:
-bash
-php artisan serve
-The backend API will be available at http://localhost:8000
-
-3. Frontend Setup
-Navigate to frontend directory:
-bash
-cd ../frontend
-Install JavaScript dependencies:
-bash
-npm install
-Environment Configuration:
-Create a .env file in the frontend directory:
-
-env
-VITE_API_URL=http://localhost:8000/api
-Start the development server:
-bash
-npm run dev
-The frontend application will be available at http://localhost:5173
-
-📁 Project Structure
-text
+```
 task-management-system/
-├── backend/                 # Laravel API
-│   ├── app/
-│   │   ├── Http/
-│   │   │   ├── Controllers/
-│   │   │   └── Requests/
-│   │   ├── Models/
-│   │   └── Policies/
-│   ├── database/
-│   │   ├── migrations/
-│   │   └── seeders/
-│   ├── routes/
-│   └── tests/
-└── frontend/               # React Application
-    ├── src/
-    │   ├── components/
-    │   ├── context/
-    │   ├── hooks/
-    │   ├── pages/
-    │   └── utils/
-    └── public/
-🔌 API Endpoints
-Authentication
-POST /api/register - User registration
+├─ backend/      → Laravel API
+├─ frontend/     → React App
+├─ README.md
+```
 
-POST /api/login - User login
+---
 
-POST /api/logout - User logout
+## Features
 
-GET /api/user - Get authenticated user
+### Backend (Laravel)
 
-Tasks
-GET /api/tasks - Get all tasks (with filtering)
+* User registration & login (JWT)
+* Tasks CRUD (Create, Read, Update, Delete)
+* RBAC: Admins see all tasks; users see only their own
+* Admins can **delete or deactivate users**
+* Task filtering by status
+* Validation using Form Requests
+* **SQLite database used**
 
-POST /api/tasks - Create a new task
+### Frontend (React)
 
-GET /api/tasks/{id} - Get specific task
+* Login & Register pages
+* Task list with filtering by status
+* Task Create/Edit page
+* State management with React Context
+* Deployed on **Vercel**
 
-PUT /api/tasks/{id} - Update a task
+---
 
-DELETE /api/tasks/{id} - Delete a task
+## Backend Setup (SQLite)
 
-Query Parameters for Tasks
-status - Filter by status (pending, in-progress, completed)
+1. Clone the repository and enter the backend folder:
 
-sort_by - Sort field (due_date, created_at)
+```bash
+git clone https://github.com/wabii-koo/task-management-system.git
+cd task-management-system/backend
+```
 
-sort_order - Sort order (asc, desc)
+2. Install dependencies:
 
-👥 Default Users
-After running seeds, you'll have:
+```bash
+composer install
+```
 
-Admin User:
+3. Copy the environment file and configure SQLite database:
 
-Email: admin@example.com
+```bash
+cp .env.example .env
+```
 
-Password: password
+Set in `.env`:
 
-Role: Admin (can view all tasks)
+```env
+DB_CONNECTION=sqlite
+DB_DATABASE=database/database.sqlite
+```
 
-Regular User:
+4. Ensure the SQLite database file exists:
 
-Email: user@example.com
+```bash
+touch database/database.sqlite
+```
 
-Password: password
+5. Generate application key and run migrations:
 
-Role: User (can only view own tasks)
-
-🧪 Running Tests
-Backend Tests:
-bash
-cd backend
-php artisan test
-Test Coverage:
-Authentication (Register/Login)
-
-Task CRUD operations
-
-Authorization policies
-
-Validation rules
-
-🎯 Usage
-Registration & Login
-
-Register a new account or use provided test accounts
-
-Login to receive JWT token
-
-Managing Tasks
-
-Create new tasks with title, description, status, and due date
-
-View all tasks in a responsive list
-
-Filter tasks by status
-
-Sort tasks by due date or creation date
-
-Edit existing tasks
-
-Delete tasks
-
-User Roles
-
-Regular Users: Can only view and manage their own tasks
-
-Admin Users: Can view and manage all users' tasks
-
-🔒 Security Features
-JWT token-based authentication
-
-Password hashing
-
-CSRF protection
-
-CORS configuration
-
-Input validation
-
-SQL injection prevention
-
-XSS protection
-
-🚀 Deployment
-Backend Deployment (Laravel)
-Server Requirements:
-
-PHP 8.1+
-
-MySQL 5.7+
-
-Web server (Apache/Nginx)
-
-Composer
-
-Deployment Steps:
-
-bash
-composer install --optimize-autoloader --no-dev
+```bash
 php artisan key:generate
-php artisan jwt:secret
-php artisan migrate --force
-php artisan config:cache
-php artisan route:cache
-Frontend Deployment (React)
-Build for production:
+php artisan migrate
+```
 
-bash
-npm run build
-Deploy the dist folder to your web server
+6. Run the backend server:
 
-🐛 Troubleshooting
-Common Issues:
-CORS Errors
+```bash
+php artisan serve
+```
 
-Ensure backend CORS is configured properly
+Backend URL: `http://localhost:8000`
 
-Check API URL in frontend environment variables
+---
 
-Authentication Issues
+## API Endpoints
 
-Verify JWT secret is generated
+**Base URL:** `http://localhost:8000/api`
 
-Check token storage in localStorage
+| Method | Endpoint               | Description                                |
+| ------ | ---------------------- | ------------------------------------------ |
+| POST   | /register              | Register new user                          |
+| POST   | /login                 | Authenticate user & get token              |
+| GET    | /tasks                 | List tasks (admin sees all, users see own) |
+| POST   | /tasks                 | Create task                                |
+| PUT    | /tasks/{id}            | Update task (owner only)                   |
+| DELETE | /tasks/{id}            | Delete task (owner only)                   |
+| PUT    | /users/{id}/deactivate | Admin can deactivate user                  |
+| DELETE | /users/{id}            | Admin can delete user                      |
 
-Ensure tokens are included in request headers
+**Task Filtering:**
 
-Database Connection
+```
+GET /tasks?status=pending
+```
 
-Verify database credentials in .env
+---
 
-Ensure MySQL server is running
+## Frontend Setup
 
-Check migration status
+1. Enter frontend folder:
 
-Frontend Build Issues
+```bash
+cd ../frontend
+npm install
+npm run dev
+```
 
-Clear node modules: rm -rf node_modules && npm install
+2. Vite runs at: `http://localhost:5173`
 
-Check Node.js version compatibility
+3. Set API URL in environment variable:
+
+```
+VITE_API_URL=http://localhost:8000/api
+```
+
+**Deployment:** Frontend is deployed on **Vercel**.
+
+---
+
+## Bonus Features Implemented
+
+* **RBAC:** Admin vs user permissions (including user deletion/deactivation)
+* **Task Filtering:** Filter tasks by status (pending, in-progress, completed)
+
+---
+
+## Testing
+
+Run backend unit tests:
+
+```bash
+php artisan test
+```
+
+---
+
+## Usage Instructions
+
+1. Open the frontend in browser (Vercel or local):
+
+```
+http://localhost:5173
+```
+
+2. Register a new user or login.
+
+3. Use **Task List** page to view tasks:
+
+   * Admins see all tasks
+   * Users see only their own tasks
+
+4. Use **Task Form** to create or edit tasks.
+
+5. Admins can **delete or deactivate users** from user management.
+
+6. Filter tasks by **status** using dropdown.
+
+7. JWT authentication ensures secure API access.
